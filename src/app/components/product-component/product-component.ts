@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, signal } from '@angular/core';
 import { ProductService } from '../../services/product-service';
 import { Product } from '../../models/Product';
 import { Observable } from 'rxjs';
@@ -12,12 +12,16 @@ import { Observable } from 'rxjs';
   styleUrls: ['./product-component.css'],
 })
 
-export class ProductComponent {
+export class ProductComponent implements OnInit{
 
-  products$: Observable<Product[]>;
+  products = signal<Product[]>([]);
 
-  constructor(private service: ProductService){
-    this.products$ = this.service.findAll();
+  constructor(private service: ProductService){}
+
+  ngOnInit(): void {
+    this.service.findAll().subscribe(products =>{
+      this.products.set(products)
+    })
   }
 
   trackById(_: number, product: Product) {

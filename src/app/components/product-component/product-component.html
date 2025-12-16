@@ -9,14 +9,15 @@
     </tr>
   </thead>
   <tbody>
-
-    <tr *ngFor="let product of products$ | async; trackBy: trackById">
+    @for( product of products(); track product.id){
+    <!-- <tr *ngFor="let product of products(); trackBy: trackById"> -->
+    <tr>
       <td>{{product.id}}</td>
       <td>{{product.name}}</td>
       <td>{{ product.description }}</td>
       <td>{{ product.price }}</td>
     </tr>
-
+    }
 
   </tbody>
 </table>
