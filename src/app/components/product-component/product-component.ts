@@ -1,8 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnInit, signal } from '@angular/core';
 import { ProductService } from '../../services/product-service';
-import { Product } from '../../models/Product';
-import { Observable } from 'rxjs';
+import { Product } from '../../models/product';
 
 @Component({
   selector: 'app-product-component',
