@@ -17,4 +17,8 @@ export class ProductService {
       map( response => response._embedded.products as Product[]),
     );
   }
+
+  create(newProduct: Product): Observable<Product>{
+    return this.http.post<Product>(this.url, newProduct);
+  }
 }

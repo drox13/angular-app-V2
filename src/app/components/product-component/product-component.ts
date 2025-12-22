@@ -2,11 +2,12 @@ import { CommonModule } from '@angular/common';
 import { Component, OnInit, signal } from '@angular/core';
 import { ProductService } from '../../services/product-service';
 import { Product } from '../../models/product';
+import { FormComponent } from '../form-component/form-component';
 
 @Component({
   selector: 'app-product-component',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, FormComponent],
   templateUrl: './product-component.html',
   styleUrls: ['./product-component.css'],
 })
@@ -14,6 +15,7 @@ import { Product } from '../../models/product';
 export class ProductComponent implements OnInit{
 
   products = signal<Product[]>([]);
+  productSelected: Product = new Product();
 
   constructor(private service: ProductService){}
 
@@ -25,6 +27,22 @@ export class ProductComponent implements OnInit{
 
   trackById(_: number, product: Product) {
   return product.id;
-}
+  }
+
+  onUpdateProduct(productRow: Product) {
+    this.productSelected = {...productRow};
+  }
+
+  addproduct(product: Product) {
+    this.service.create(product).subscribe(producNew =>{
+        this.products.update(products => [
+      ... products, {...producNew}
+    ] )
+    })
+
+
+
+  }
+
 
 }

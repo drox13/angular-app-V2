@@ -1,23 +1,25 @@
+<app-form-component (newProductEvent)="addproduct($event)"></app-form-component>
 <p>product-component works!</p>
-<table>
+<table class="table table-hover table-striped">
   <thead>
-    <tr>
+    <tr class="table-primary">
       <th>id</th>
       <th>name</th>
       <th>description</th>
       <th>price</th>
+      <th>Update</th>
     </tr>
   </thead>
   <tbody>
     @for( product of products(); track product.id){
     <!-- <tr *ngFor="let product of products(); trackBy: trackById"> -->
-    <tr>
+    <tr class="table-primary">
       <td>{{product.id}}</td>
       <td>{{product.name}}</td>
       <td>{{ product.description }}</td>
       <td>{{ product.price }}</td>
+      <td (click)="onUpdateProduct(product)" class="btn btn-sm btn-secondary"><button>Update</button></td>
     </tr>
     }
-
   </tbody>
 </table>
