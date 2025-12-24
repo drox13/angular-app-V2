@@ -34,15 +34,20 @@ export class ProductComponent implements OnInit{
   }
 
   addproduct(product: Product) {
-    this.service.create(product).subscribe(producNew =>{
-        this.products.update(products => [
-      ... products, {...producNew}
-    ] )
-    })
-
-
-
+    if(product.id > 0 ){ // Editar
+      this.service.update(product).subscribe(productUpdate =>{
+        this.products.update(products =>
+          products.map(p => p.id === productUpdate.id?
+            { ... productUpdate }: p
+          )
+        )
+      })
+    }else{ // Crear
+      this.service.create(product).subscribe(producNew =>{
+        this.products.update(
+          products => [... products, {...producNew}
+        ] )
+      })
+    }
   }
-
-
 }
