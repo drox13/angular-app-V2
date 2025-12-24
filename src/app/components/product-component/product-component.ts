@@ -51,4 +51,10 @@ export class ProductComponent implements OnInit{
     }
     this.productSelected = new Product(); // limpia el formulario
   }
+
+  delete(id: number){
+    this.service.delete(id).subscribe(()=>{
+      this.products.update(products => products.filter(p => p.id !== id))
+    });
+  }
 }
