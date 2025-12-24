@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { Product } from '../../models/product';
 import { FormsModule } from '@angular/forms';
 
@@ -9,7 +9,7 @@ import { FormsModule } from '@angular/forms';
   styleUrl: './form-component.css',
 })
 export class FormComponent {
-  product: Product = new Product();
+  @Input() product: Product = new Product();
 
   @Output() newProductEvent = new EventEmitter();
 
