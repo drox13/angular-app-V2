@@ -49,5 +49,6 @@ export class ProductComponent implements OnInit{
         ] )
       })
     }
+    this.productSelected = new Product(); // limpia el formulario
   }
 }
