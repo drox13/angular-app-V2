@@ -1,10 +1,12 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { Product } from '../../models/product';
 import { FormsModule } from '@angular/forms';
+import { NgIf } from '@angular/common';
+
 
 @Component({
   selector: 'app-form-component',
-  imports: [FormsModule],
+  imports: [FormsModule, NgIf],
   templateUrl: './form-component.html',
   styleUrl: './form-component.css',
 })
